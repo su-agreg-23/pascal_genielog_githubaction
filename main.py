@@ -15,16 +15,14 @@ class Life():
         self.width = 0
 
 
-    def text_to_grid(self, text_grid: str) -> None:
+    def set_grid(self, text_grid: str) -> None:
         # setter pour la grille actuelle
         
         # transformation de la grille en tableau de string
         tab_grid =  text_grid.split("\n")
         # récupération de la hauteur et la largeur de la grille
         self.height, self.width = map(int, tab_grid[0].split() )
-        # print(f"INFO: height = {h-1+1}, width = {w-1+1}")
-
-        self.grid = text_grid
+        self.grid = tab_grid[1:]
 
 
     def next(self):
