@@ -13,3 +13,6 @@ def test_integration_ko():
 
 def test_foo():
     assert foo() == 1
+
+def test_integration_ko():
+    assert False
