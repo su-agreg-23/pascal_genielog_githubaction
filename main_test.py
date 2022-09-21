@@ -73,3 +73,26 @@ def test_nb_voisins():
         for j in range(8):
             assert g.voisins(i,j) == 0
 
+    g.set_grid(input_2)
+    # 0 voisins dans l'angle
+    assert g.voisins(0, 0) == 0
+    # 1 voisin
+    assert g.voisins(0, 3) == 1
+    assert g.voisins(0, 4) == 1
+    assert g.voisins(0, 5) == 1
+    assert g.voisins(1, 2) == 1
+    assert g.voisins(2, 2) == 1
+    assert g.voisins(3, 2) == 1
+    assert g.voisins(3, 5) == 1
+    # 2 voisins
+    assert g.voisins(1, 4) == 2
+    assert g.voisins(2, 4) == 2
+    assert g.voisins(1, 3) == 2
+    assert g.voisins(1, 5) == 2
+    assert g.voisins(2, 5) == 2
+    assert g.voisins(3, 3) == 2
+    assert g.voisins(3, 4) == 2
+    # 3 voisins
+    assert g.voisins(1, 3) == 3
+
+

@@ -31,6 +31,7 @@ class Life():
         # respecte les règles du jeu de la vie
         return self.grid
 
+
     def voisins(self, i: int, j: int) -> int:
         """ renvoie le nombre de voisins de la cellule (i,j)
         de la grille de jeux
