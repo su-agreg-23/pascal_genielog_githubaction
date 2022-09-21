@@ -5,5 +5,3 @@ développent :
     * CI (via github)
 """
 
-def foo():
-    return 1
