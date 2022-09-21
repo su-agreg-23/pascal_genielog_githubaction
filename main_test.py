@@ -46,7 +46,8 @@ ouput_2 = ['........',
            '...**...', 
            '........']
 
-def test_next_method():
+
+def test_constructeur_sans_arguments():
     # vérifie l'existence de
     #   * attribut grid
     #   * méthode next
@@ -54,17 +55,41 @@ def test_next_method():
     # créer une grille vide
     g = Life()
 
-    g.set_grid(input_0)
+    g._set_grid(input_0)
     # mise à jour des dimensions de la grille
     assert g.height == 4
     assert g.width == 8
     assert g.grid == ['........', '........', '........', '........']
 
-    g.set_grid(input_1)
+    g._set_grid(input_1)
     # mise à jour des dimensions de la grille
     assert g.height == 3
     assert g.width == 5
     assert g.grid == ['.*...', '...*.', '*....']
+
+
+def test_constructeur_avec_argument():
+    """ test de création avec argument """
+
+    # absence explicite de grille
+    g = Life("")
+    assert g.height == 0
+    assert g.width == 0
+    assert g.grid == []
+
+    # grille vide
+    g = Life(input_0)
+    assert g.height == 4
+    assert g.width == 8
+    assert g.grid == output_0
+
+    # grille quelconque
+    g = Life(input_1)
+    # mise à jour des dimensions de la grille
+    assert g.height == 3
+    assert g.width == 5
+    assert g.grid == ['.*...', '...*.', '*....']
+
 
 
 def test_nb_voisins():
@@ -74,31 +99,31 @@ def test_nb_voisins():
     """
     g = Life()
     # cas de la grille vide
-    g.set_grid(input_0)
+    g._set_grid(input_0)
     for i in range(4):
         for j in range(8):
-            assert g.get_neighbours(i,j) == 0
+            assert g._get_neighbours(i,j) == 0
 
-    g.set_grid(input_2)
+    g._set_grid(input_2)
     # 0 voisins dans l'angle
-    assert g.get_neighbours(0, 0) == 0
+    assert g._get_neighbours(0, 0) == 0
     # 1 voisin
-    assert g.get_neighbours(0, 3) == 1
-    assert g.get_neighbours(0, 4) == 1
-    assert g.get_neighbours(0, 5) == 1
-    assert g.get_neighbours(1, 2) == 1
-    assert g.get_neighbours(2, 2) == 1
-    assert g.get_neighbours(3, 2) == 1
-    assert g.get_neighbours(3, 5) == 1
+    assert g._get_neighbours(0, 3) == 1
+    assert g._get_neighbours(0, 4) == 1
+    assert g._get_neighbours(0, 5) == 1
+    assert g._get_neighbours(1, 2) == 1
+    assert g._get_neighbours(2, 2) == 1
+    assert g._get_neighbours(3, 2) == 1
+    assert g._get_neighbours(3, 5) == 1
     # 2 voisins
-    assert g.get_neighbours(1, 4) == 2
-    assert g.get_neighbours(2, 4) == 2
-    assert g.get_neighbours(1, 5) == 2
-    assert g.get_neighbours(2, 5) == 2
-    assert g.get_neighbours(3, 3) == 2
-    assert g.get_neighbours(3, 4) == 2
+    assert g._get_neighbours(1, 4) == 2
+    assert g._get_neighbours(2, 4) == 2
+    assert g._get_neighbours(1, 5) == 2
+    assert g._get_neighbours(2, 5) == 2
+    assert g._get_neighbours(3, 3) == 2
+    assert g._get_neighbours(3, 4) == 2
     # 3 voisins
-    assert g.get_neighbours(1, 3) == 3
+    assert g._get_neighbours(1, 3) == 3
 
 
 def test_next():
@@ -107,9 +132,9 @@ def test_next():
     g = Life()
 
     # test avec la grille vide
-    g.set_grid(input_0)
+    g._set_grid(input_0)
     assert g.next() == output_0
 
     # exemple de l'énoncé
-    g.set_grid(input_2)
+    g._set_grid(input_2)
     assert g.next() == ouput_2

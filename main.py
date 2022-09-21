@@ -5,18 +5,25 @@ développent :
     * CI (via github)
 """
 
+
 class Life():
     # classe de jeu de la vie
 
-    def __init__(self):
-        # grille actuelle
-        self.grid = ""
-        self.height = 0
-        self.width = 0
+    def __init__(self, input_text:str = ""):
+        # initialisation grille vide
+        if input_text == "":
+            self.grid = []
+            self.height = 0
+            self.width = 0
+        else:
+            self._set_grid(input_text)
 
 
-    def set_grid(self, text_grid: str) -> None:
-        # setter pour la grille actuelle
+    def _set_grid(self, text_grid: str) -> None:
+        """ 
+        setter pour mettre à jour la grille actuelle
+        avec en entrée un texte
+        """
         
         # transformation de la grille en tableau de string
         tab_grid =  text_grid.split("\n")
@@ -25,7 +32,7 @@ class Life():
         self.grid = tab_grid[1:]
 
 
-    def get_neighbours(self, i: int, j: int) -> int:
+    def _get_neighbours(self, i: int, j: int) -> int:
         """ renvoie le nombre de voisins de la cellule (i,j)
         de la grille de jeux
         precondition:   * 0 <= i < height
@@ -73,7 +80,7 @@ class Life():
             line = ""
             for j in range(self.width):
                 cell = self.grid[i][j]
-                neighbours = self.get_neighbours(i, j)
+                neighbours = self._get_neighbours(i, j)
                 # cas d'une cellule vivante
                 if cell == '*':
                     # sous et sur population -> mort
