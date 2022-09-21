@@ -87,7 +87,6 @@ def test_nb_voisins():
     # 2 voisins
     assert g.voisins(1, 4) == 2
     assert g.voisins(2, 4) == 2
-    assert g.voisins(1, 3) == 2
     assert g.voisins(1, 5) == 2
     assert g.voisins(2, 5) == 2
     assert g.voisins(3, 3) == 2

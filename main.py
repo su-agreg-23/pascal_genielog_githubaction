@@ -38,5 +38,29 @@ class Life():
         precondition:   * 0 <= i < height
                         * 0 <= j < width
         """
-        return 0
+        nb_voisins: int = 0
+        # au dessus
+        if i > 0:
+            if j-1>0 and self.grid[i-1][j-1] == '*':
+                    nb_voisins += 1
+            if self.grid[i-1][j] == '*':
+                    nb_voisins += 1
+            if j+1<self.width and self.grid[i-1][j+1] == '*':
+                    nb_voisins += 1
+        # au dessous
+        if i+1 < self.height:
+            if j-1>0 and self.grid[i+1][j-1] == '*':
+                    nb_voisins += 1
+            if self.grid[i+1][j] == '*':
+                    nb_voisins += 1
+            if j+1<self.width and self.grid[i+1][j+1] == '*':
+                    nb_voisins += 1
+        # à gauche
+        if j-1>0 and self.grid[i][j-1] == '*':
+            nb_voisins += 1
+        # à droite
+        if j+1<self.width and self.grid[i][j+1] == '*':
+            nb_voisins += 1
+
+        return nb_voisins
         
