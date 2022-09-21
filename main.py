@@ -64,5 +64,34 @@ class Life():
         # respecte les règles du jeu de la vie
         
         # nouvelle grille qui sera renvoyée
+        # initialisée avec des '.'
         new_grid: list[str] = []
-        return self.grid
+
+        # parcours ligne par ligne
+        for i in range(self.height):
+            # string qui va composer la ligne courante
+            line = ""
+            for j in range(self.width):
+                cell = self.grid[i][j]
+                neighbours = self.get_neighbours(i, j)
+                # cas d'une cellule vivante
+                if cell == '*':
+                    # sous et sur population -> mort
+                    if 2 < neighbours < 3:
+                        line += '.'
+                    # survie
+                    else:
+                        line += '*'
+                # cas d'une cellule morte
+                else:
+                    # reproduction (à 3 ?!?)
+                    # (pfff... c'est encore un truc des années 70...)
+                    if neighbours == 3:
+                        line += '*'
+                    # le néant
+                    else:
+                        line += '.'
+            # ajout de la line à la suite de la grille
+            new_grid.append(line)
+
+        return new_grid

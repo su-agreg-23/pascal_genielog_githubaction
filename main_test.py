@@ -105,6 +105,11 @@ def test_next():
     """ vérifie la fonction qui renvoie
     la prochaine nouvelle grille """
     g = Life()
-    g.set_grid(input_0)
 
+    # test avec la grille vide
+    g.set_grid(input_0)
     assert g.next() == output_0
+
+    # exemple de l'énoncé
+    g.set_grid(input_2)
+    assert g.next() == ouput_2
