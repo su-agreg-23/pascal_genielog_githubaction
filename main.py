@@ -25,42 +25,44 @@ class Life():
         self.grid = tab_grid[1:]
 
 
-    def next(self):
-        # méthode qui renvoie la prochaine grille en fonction
-        # de self.grid actuel
-        # respecte les règles du jeu de la vie
-        return self.grid
-
-
-    def voisins(self, i: int, j: int) -> int:
+    def get_neighbours(self, i: int, j: int) -> int:
         """ renvoie le nombre de voisins de la cellule (i,j)
         de la grille de jeux
         precondition:   * 0 <= i < height
                         * 0 <= j < width
         """
-        nb_voisins: int = 0
+        neighbours: int = 0
         # au dessus
         if i > 0:
             if j-1>0 and self.grid[i-1][j-1] == '*':
-                    nb_voisins += 1
+                    neighbours += 1
             if self.grid[i-1][j] == '*':
-                    nb_voisins += 1
+                    neighbours += 1
             if j+1<self.width and self.grid[i-1][j+1] == '*':
-                    nb_voisins += 1
+                    neighbours += 1
         # au dessous
         if i+1 < self.height:
             if j-1>0 and self.grid[i+1][j-1] == '*':
-                    nb_voisins += 1
+                    neighbours += 1
             if self.grid[i+1][j] == '*':
-                    nb_voisins += 1
+                    neighbours += 1
             if j+1<self.width and self.grid[i+1][j+1] == '*':
-                    nb_voisins += 1
+                    neighbours += 1
         # à gauche
         if j-1>0 and self.grid[i][j-1] == '*':
-            nb_voisins += 1
+            neighbours += 1
         # à droite
         if j+1<self.width and self.grid[i][j+1] == '*':
-            nb_voisins += 1
+            neighbours += 1
 
-        return nb_voisins
+        return neighbours
+
+
+    def next(self):
+        # méthode qui renvoie la prochaine grille en fonction
+        # de self.grid actuel
+        # respecte les règles du jeu de la vie
         
+        # nouvelle grille qui sera renvoyée
+        new_grid: list[str] = []
+        return self.grid

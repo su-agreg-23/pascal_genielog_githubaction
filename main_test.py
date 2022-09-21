@@ -28,6 +28,8 @@ input_0 = """4 8
 ........
 ........"""
 
+output_0 = ['........', '........', '........', '........']
+
 input_1 = """3 5
 .*...
 ...*.
@@ -39,6 +41,10 @@ input_2 = """4 8
 ...**...
 ........"""
 
+ouput_2 = ['........', 
+           '...**...', 
+           '...**...', 
+           '........']
 
 def test_next_method():
     # vérifie l'existence de
@@ -71,27 +77,34 @@ def test_nb_voisins():
     g.set_grid(input_0)
     for i in range(4):
         for j in range(8):
-            assert g.voisins(i,j) == 0
+            assert g.get_neighbours(i,j) == 0
 
     g.set_grid(input_2)
     # 0 voisins dans l'angle
-    assert g.voisins(0, 0) == 0
+    assert g.get_neighbours(0, 0) == 0
     # 1 voisin
-    assert g.voisins(0, 3) == 1
-    assert g.voisins(0, 4) == 1
-    assert g.voisins(0, 5) == 1
-    assert g.voisins(1, 2) == 1
-    assert g.voisins(2, 2) == 1
-    assert g.voisins(3, 2) == 1
-    assert g.voisins(3, 5) == 1
+    assert g.get_neighbours(0, 3) == 1
+    assert g.get_neighbours(0, 4) == 1
+    assert g.get_neighbours(0, 5) == 1
+    assert g.get_neighbours(1, 2) == 1
+    assert g.get_neighbours(2, 2) == 1
+    assert g.get_neighbours(3, 2) == 1
+    assert g.get_neighbours(3, 5) == 1
     # 2 voisins
-    assert g.voisins(1, 4) == 2
-    assert g.voisins(2, 4) == 2
-    assert g.voisins(1, 5) == 2
-    assert g.voisins(2, 5) == 2
-    assert g.voisins(3, 3) == 2
-    assert g.voisins(3, 4) == 2
+    assert g.get_neighbours(1, 4) == 2
+    assert g.get_neighbours(2, 4) == 2
+    assert g.get_neighbours(1, 5) == 2
+    assert g.get_neighbours(2, 5) == 2
+    assert g.get_neighbours(3, 3) == 2
+    assert g.get_neighbours(3, 4) == 2
     # 3 voisins
-    assert g.voisins(1, 3) == 3
+    assert g.get_neighbours(1, 3) == 3
 
 
+def test_next():
+    """ vérifie la fonction qui renvoie
+    la prochaine nouvelle grille """
+    g = Life()
+    g.set_grid(input_0)
+
+    assert g.next() == output_0
